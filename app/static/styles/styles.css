@@ -1,0 +1,33 @@
+.stat-container {
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.stat-circle {
+  width: 200px;
+  height: 200px;
+  border-radius: 1000px;
+  background: -webkit-linear-gradient(left top, crimson 0%, #f90 100%);
+  padding: 5px;
+  margin: 20px 20px;
+}
+.stat-content {
+  text-align: center;
+  background: #EFEFEF;
+  border-radius: 100px;
+  padding: 40px;
+  height: 190px;
+  width: 190px;
+}
+.stat-number {
+  font-size: 40px;
+  color: #f70;
+}
+.stat-image {
+  max-width: 100%;
+}
+#zipcode, #result {
+  text-align: center;
+  font-weight: 300;
+  font-size: 45px;
+  color: rgb(230, 108, 1)
+}

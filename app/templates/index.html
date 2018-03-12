@@ -1,0 +1,98 @@
+<html>
+  <head>
+    <title>SFPD Response Analytics</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src={{ url_for('static', filename='js/predict.js') }}></script>
+    <script src={{ url_for('static', filename='js/zip_stats.js') }}></script>
+    <link rel="stylesheet" href={{ url_for('static', filename="styles/styles.css") }}>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="display-3">SFPD Response Analytics</h1>
+      <h3 class="display-5">By Ryan Jiang</h3>
+      <p class="lead">I utilized Matplotlib, Seaborn, Pandas, Twitter Bootstrap, Flask, and JQuery for visualizations, constructing models, and web programming. Data exploration was performed using iPython notebooks.</p>
+      <div class="jumbotron mt-5">
+        <h2 class="display-4">Zipcode Statistics</h2>
+        <p class="lead">Calculates statistics based on selected zipcode.</p>
+        <form>
+          <div class="dropdown">
+            <button class="btn btn-dark btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Select Zipcode
+            </button>
+            <hr class="my-3">
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              {% for zip in ["All", 94102, 94103, 94104, 94105, 94107, 94108, 94109, 94110, 94111, 94112, 94114, 94115, 94116, 94117, 94118, 94121, 94122, 94123, 94124, 94127, 94129, 94130, 94131, 94132, 94133, 94134, 94158] %}
+                <a class="zipcode-select"><button class="dropdown-item" value={{zip}}>{{ zip }}</button></a>
+              {% endfor %}
+            </div>
+          </div>
+        </form>
+        <p id="zipcode">All</p>
+        <div class="d-flex mt-4 stat-container">
+          <div class="stat-circle">
+            <div class="stat-content">
+            <k id=total_incidents class="stat-number">10000</k>
+            <div>total incidents</div>
+            </div>
+          </div>
+          <div class="stat-circle">
+            <div class="stat-content">
+            <k id=incidents_per_day class="stat-number">833.3</k>
+            <div>incidents per day</div>
+            </div>
+          </div>
+          <div class="stat-circle">
+            <div class="stat-content">
+            <k id=average_response_time class="stat-number">225.2</k>
+            <div> avg response time (s) </div>
+            </div>
+          </div>
+          <div class="stat-circle">
+            <div class="stat-content">
+            <k id=percent_emergencies class="stat-number">70.8%</k>
+            <div> emergencies</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="jumbotron">
+        <h2 class="display-4">Predicting Emergency Calls</h2>
+        <p class="lead">Input location coordinates and time to predict most likely incident cause, utilizing K Nearest Neighbor classifier.</p>
+        <hr class="my-4">
+        <form class="mt-4">
+            <div class="input-group input-group-lg">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Location</span>
+              </div>
+              <input class="form-control" type=text  name="latitude" placeholder="latitude">
+              <input class="form-control" type=text  name="longitude" placeholder="longitude">
+            </div>
+          <div class="input-group mt-3 input-group-lg">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Time</span>
+            </div>
+            <input class="form-control" type=text  name="hour" placeholder="hour">
+            <input class="form-control" type=text  name="minute" placeholder="minute">
+            <input class="form-control" type=text  name="second" placeholder="second">
+          </div>
+          <div id="process_input"><button type=button class='btn btn-dark mt-3 btn-lg' id="predict_button">Predict</button></div>
+        </form>
+        <p id='result'></p>
+        <p id='error'></p>
+      </div>
+      <div class="container">
+          <h2 class="display-4 text-center">Response Time By Zipcode</h2>
+          <div class="d-flex">
+            <img class="mx-auto stat-image" src={{ url_for('static', filename='img/zipcodes.png') }} alt="Response Time By Zipcode" width=1200 height=500>
+          </div>
+          <h2 class="display-4 text-center">Incident Heatmap</h2>
+          <div class="d-flex">
+              <img class="mx-auto stat-image" src={{ url_for('static', filename='img/heatmap_no_bg.png') }} alt="Heatmap of Incidents">
+          </div>
+        </div>
+    </div>
+  </body>
+</html>
