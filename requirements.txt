@@ -1,3 +1,6 @@
+alabaster==0.7.10
+algoliasearch==1.12.0
+algoliasearch-django==1.2.5
 appnope==0.1.0
 asn1crypto==0.22.0
 astroid==1.5.2
@@ -32,14 +35,20 @@ Fabric==1.4.3
 Flask==0.10.1
 functools32==3.2.3.post2
 google-api-python-client==1.2
+gunicorn==19.7.1
 httplib2==0.10.3
 idna==2.5
 imagesize==0.7.1
 ipaddress==1.0.18
+ipykernel==4.6.1
+ipython==5.5.0
+ipython-genutils==0.2.0
 isort==4.2.5
 itsdangerous==0.24
 Jinja2==2.7.1
 jmespath==0.9.3
+jupyter-client==5.1.0
+jupyter-core==4.3.0
 keyring==11.0.0
 lazy-object-proxy==1.2.2
 Markdown==2.3.1
@@ -54,6 +63,7 @@ pandas==0.22.0
 pathlib2==2.3.0
 pathspec==0.5.0
 pexpect==4.2.1
+pickleshare==0.7.4
 Pillow==4.1.1
 progressbar==2.2
 progressbar2==3.34.3
@@ -74,6 +84,7 @@ PyYAML==3.10
 pyzmq==16.0.2
 requests==2.1.0
 scandir==1.6
+scikit-learn==0.19.1
 scipy==1.0.0
 semantic-version==2.5.0
 sh==1.9
