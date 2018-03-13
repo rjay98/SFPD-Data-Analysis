@@ -17,7 +17,6 @@ $(() => {
       "minute": $('input[name="minute"]').val(),
       "second": $('input[name="second"]').val(),
     };
-    console.log(predict_dat)
     event.preventDefault();
     setTimeout(function() {
       $('#predict_button').text("Predicting...");

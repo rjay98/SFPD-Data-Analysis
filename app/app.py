@@ -51,7 +51,7 @@ def zip_statistics(zipcode="All"):
     # Based on data exploration, we know there are 12 days in the dataset.
     total_incidents = len(df)
     incidents_per_day = round(total_incidents / 12., 1)
-    average_response_time = round(np.mean(df['response_time']), 1)
+    average_response_time = round(np.mean(df['response_time'])/60., 2)
     num_emergencies = len(df[df['final_priority'] == 3])
     percent_emergencies = round(num_emergencies / float(total_incidents) * 100, 1)
     return jsonify(

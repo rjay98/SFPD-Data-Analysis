@@ -1,6 +1,9 @@
 <html>
   <head>
-    <title>SFPD Response Analytics</title>
+    <title>SFPD Analytics</title>
+    <link rel="icon" 
+      type="image/png" 
+      href={{ url_for('static', filename='img/favicon.png') }}>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -11,7 +14,7 @@
   </head>
   <body>
     <div class="container">
-      <h1 class="display-3">SFPD Response Analytics</h1>
+      <h1 class="display-3"> SFPD Analytics <img class="float-right" src={{ url_for('static', filename="img/favicon.png") }} height=92 width=92></h1>
       <h3 class="display-5">By Ryan Jiang</h3>
       <p class="lead">I utilized Matplotlib, Seaborn, Pandas, Twitter Bootstrap, Flask, and JQuery for visualizations, constructing models, and web programming. Data exploration was performed using iPython notebooks.</p>
       <div class="jumbotron mt-5">
@@ -46,8 +49,8 @@
           </div>
           <div class="stat-circle">
             <div class="stat-content">
-            <k id=average_response_time class="stat-number">225.2</k>
-            <div> avg response time (s) </div>
+            <k id=average_response_time class="stat-number">9.99</k>
+            <div> avg response time (min) </div>
             </div>
           </div>
           <div class="stat-circle">
@@ -84,13 +87,25 @@
         <p id='error'></p>
       </div>
       <div class="container">
-          <h2 class="display-4 text-center">Response Time By Zipcode</h2>
+          <h2 class="display-4 text-center">Arrival Time By Zipcode</h2>
+          <p class="lead mt-3">The average time to arrive on-scene after receiving a call over all zipcodes, in seconds. We see that response times are pretty consistent across zipcodes with 94127 being a little higher than the others. I'm not very familiar with the 94127 area, so I'm not exactly sure what would take the long response time. To examine the possible causes, I investigated the time breakdown for each component of the response.</p>
           <div class="d-flex">
             <img class="mx-auto stat-image" src={{ url_for('static', filename='img/zipcodes.png') }} alt="Response Time By Zipcode" width=1200 height=500>
           </div>
-          <h2 class="display-4 text-center">Incident Heatmap</h2>
+          <h2 class="display-4 text-center mt-5">Time Breakdown for Responses</h2>
+          <p class="lead mt-3">The average time between each component of the response (in seconds). We see that the first three segments (from receiving the transmission to response) is the fastest, and from response to on-scene takes up the most time. This is consistent with prior intuition, as physically travelling to the location would seem to take longer than the other components, which are mostly done electronically. Intuitively, this would imply that 94127 is farther away from a station than the other zipcodes, which would explain the longer time to arrive on-scene. I took a look at the police and fire departments around San Francisco, and indeed 94127 is one of the zip codes that doesn't have a clear department responsible. Interestingly, its border is surrounded by 3 different police stations - Taravel Police Station, University Police Department, and Ingleside Police Station. Perhaps part of the problem is no clear authority over the region - since there are three nearby police departments, police officers might assume that other stations are responsible, which delays the response time. A clear solution would be to position a new station in 94127. </p>
+          <div class="d-flex">
+            <img class="mx-auto stat-image" src={{ url_for('static', filename='img/time_breakdown.png') }} alt="Time Breakdown for Responses" width=800 height=400>
+          </div>
+          <h2 class="display-4 text-center mt-5">Incident Heatmap</h2>
+          <p class="lead mt-3">Below is the heatmap for all incidents, scaled by priority (emergencies scaled by a factor of two). The centralized red area is the Tenderloin district. Having grown up in the Bay Area and volunteering at the Tenderloin every year, this is very consistent with my prior expectations. The Tenderloin is notorious for its crime and poverty rates, and it's sandwiched right between some of the wealthiest parts of the city.</p>
           <div class="d-flex">
               <img class="mx-auto stat-image" src={{ url_for('static', filename='img/heatmap_no_bg.png') }} alt="Heatmap of Incidents">
+          </div>
+          <h2 class="display-4 text-center mt-5">Trends by Location</h2>
+          <p class="lead mt-3">The calls per day over the 12-day period in which the data were collected. We see that overall, there is high variation between zipcodes, but between days each zipcode remains rather consistent with slight devation from day to day. Overall, the randomness looks reasonable, and it's hard to pick out substantive trends. Perhaps a larger dataset with more days would help distinguish trends more clearly.</p>
+          <div class="d-flex">
+              <img class="mx-auto stat-image" src={{ url_for('static', filename='img/calls_time.png') }} alt="Calls Per Day by Zipcode" height=600>
           </div>
         </div>
     </div>
