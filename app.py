@@ -1,13 +1,8 @@
 from flask import Flask, render_template, send_file, jsonify, request
 import pandas as pd
 import numpy as np
-import matplotlib
-matplotlib.use('Agg')
-import matplotlib.pyplot as plt
-import seaborn as sns
 import io
 from classifier import KNNClassifier, Query
-from collections import Counter
 
 app = Flask(__name__)
 
