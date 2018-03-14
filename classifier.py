@@ -127,4 +127,4 @@ class KNNClassifier():
     Feature 2: Latitude
     Feature 3: Longitude
     """
-    return X[['received_time_seconds', 'latitude', 'longitude']], X['call_type']
+    return X[['received_time_seconds', 'latitude', 'longitude']], X['unit_type']

@@ -10,6 +10,7 @@ const handleSuccess = (data) => {
 
 $(() => {
   $('div#process_input').bind('click', function() {
+    $('#error').text('');
     var predict_dat = {
       "longitude": $('input[name="longitude"]').val(),
       "latitude": $('input[name="latitude"]').val(),
